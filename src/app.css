@@ -1,0 +1,14 @@
+html, body, #root{
+    /* overflow-x: hidden; */
+    height: 100%;
+    width: 100%;
+    background-color: red;
+    padding: 0;
+    margin: 0;
+}
+/* .App{
+    background: red;
+    height: 100%;
+    width:100%;
+} */
+

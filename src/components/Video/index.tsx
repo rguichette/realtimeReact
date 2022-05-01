@@ -17,7 +17,7 @@ import Controls from '../controls'
  * 
  */
 
-export default function Video({controls=true}:{controls?:boolean} ) {
+export default function Video({controls=true, style={width:720}}:{controls?:boolean, style?:{background?:string, height?:number, width:number, borderRadius?:number |string}} ) {
     const {muted, hide, in_call } = useSelector<RootState>(state =>state.video) as initVideoState
     const dispatch = useDispatch<AppDispatch>()
 
@@ -25,13 +25,9 @@ export default function Video({controls=true}:{controls?:boolean} ) {
     }
   return (
     
-    <VidStyles>
+    <VidStyles style={style}>
         <div className="vid_controls"> 
-            <button onClick={()=>{
-                dispatch(muteAudio())
-                console.log("testing Mute");
-                
-            }}>test Mute</button>
+
         </div>
         <div className='video_container'>
 
@@ -49,6 +45,6 @@ function onloadMetaData (e:React.SyntheticEvent<HTMLVideoElement, Event>){
     console.log("meta loaded");
     
     let player = e.target as HTMLVideoElement;
-    player.width = player.clientWidth;
-    player.height = player.clientHeight;
+    // player.width = player.videoWidth
+    // player.height = player.videoHeight;
 }
