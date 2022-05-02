@@ -2,12 +2,17 @@ import "./app.css"
 import Video from './components/Video'
 import Controls from './components/controls'
 
-import {getVideo} from './helpers/callHelper'
+import {getMedia} from './helpers/callHelper'
 
 import VideoChat from './components/videoChat'
 
 function App() {
- getVideo({audio: false})
+
+
+// console.log(stream);
+
+
+
   return (
     <div className="App" style={{ height:"100%", width:"100%"}} >
 

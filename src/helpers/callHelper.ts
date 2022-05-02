@@ -8,10 +8,19 @@ interface IConstraints {
 /**
  * retrieves media from user 
  */
-export let getVideo = async(constraints:IConstraints ={video:true, audio:true})=>{
+export let getMedia= async (constraints:IConstraints ={video:true, audio:true})=>{
+    let stream = null;
 
- console.log("getting video", constraints);
-    return 0;
+
+  try {
+    stream = await navigator.mediaDevices.getUserMedia(constraints);
+    /* use the stream */
+  } catch(err) {
+    /* handle the error */
+  }
+ 
+return stream;
+
 }
 
 export let makeCall = async() =>{
