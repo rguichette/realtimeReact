@@ -28,6 +28,8 @@ display: flex;
 position: relative;
 width:100%;
 height: 100%;
+border: ${({style}) =>style?.border ? style.border : "none"};
+overflow: hidden;
 
 }
 #controls{
@@ -44,6 +46,7 @@ width: 100%;
 height: 100%;
 object-fit: fill;
 background: black;
+
 } 
 `
 export default VidStyles;

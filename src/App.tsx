@@ -2,7 +2,9 @@ import "./app.css"
 import Video from './components/Video'
 import Controls from './components/controls'
 
-import Draggable from 'react-draggable';
+
+import VideoChat from './components/videoChat'
+
 
     //   <div className='remote_video_wrapper'>
 
@@ -22,14 +24,8 @@ function App() {
       {/* <Video/> */}
 
       {/* <div style={{width:"100%", background: "yellow", height:"100%"}}>test</div> */}
-  
-<Draggable bounds="parent" >
-  <div className="TEST" style={{background: "green", display:"inline-block", position: "absolute", top:"25px"}} >
 
-  <Video style={{width: 250}}/>
-  </div>
-
-</Draggable>
+<VideoChat/>
 </div>
   )
 }

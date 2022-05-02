@@ -17,7 +17,17 @@ import Controls from '../controls'
  * 
  */
 
-export default function Video({controls=true, style={width:720}}:{controls?:boolean, style?:{background?:string, height?:number, width:number, borderRadius?:number |string}} ) {
+interface Ivideo  {
+  controls?:boolean,
+  style?:{background?:string, 
+  height?:number, width:number,
+  borderRadius?:number |string
+
+  border?:string
+}
+}
+
+export default function Video({controls=true, style={width:720}}:Ivideo ) {
     const {muted, hide, in_call } = useSelector<RootState>(state =>state.video) as initVideoState
     const dispatch = useDispatch<AppDispatch>()
 
@@ -25,7 +35,7 @@ export default function Video({controls=true, style={width:720}}:{controls?:bool
     }
   return (
     
-    <VidStyles style={style}>
+    <VidStyles style={style} >
         <div className="vid_controls"> 
 
         </div>
