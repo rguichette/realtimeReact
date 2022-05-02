@@ -13,7 +13,7 @@ export default function index() {
  <Style>
     
       <Video/>
-      <motion.div className="motion_video"  style={{position:"absolute", top:0, border: "1px solid white",borderRadius: 20}}
+      <motion.div className="motion_video"  style={{position:"absolute", top:0, border: "1px solid yellow",borderRadius: 20}}
       drag dragConstraints={{
         top: 0,
         left: 50,
