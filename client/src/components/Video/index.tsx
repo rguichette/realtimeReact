@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useRef } from 'react'
+import React, { MutableRefObject, useRef, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {AppDispatch, RootState} from '../../store'
 
@@ -7,6 +7,7 @@ import VidStyles from './style'
 import {muteAudio, hide, pickup, hangup, initVideoState} from '../../videoSlice'
 import Controls from '../controls'
 import { getMedia } from '../../helpers/callHelper'
+import CallWindow from '../callWindow'
 
 
 
@@ -28,12 +29,15 @@ interface Ivideo  {
 
   border?:string,
 }
+main?:boolean
 }
 
-let Video = React.forwardRef<HTMLVideoElement, Ivideo>(({controls=true, style={width:720}, stream}, forwardedRef  ) => {
+let Video = React.forwardRef<HTMLVideoElement, Ivideo>(({controls=true, main=false ,style={width:720}, stream}, forwardedRef  ) => {
     const {muted, hide, in_call } = useSelector<RootState>(state =>state.video) as initVideoState
     const dispatch = useDispatch<AppDispatch>()
     
+    let [calling, setCall] = useState(false)
+
     // console.log("your ref is ", forwardedRef);
     
     
@@ -52,8 +56,11 @@ let Video = React.forwardRef<HTMLVideoElement, Ivideo>(({controls=true, style={w
       <video ref={forwardedRef} autoPlay muted controls={false} id="localVideo" onLoadedMetadata={(e)=>onloadMetaData(e)}>
           {/* <source  type="video/mp4" src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" /> */}
       </video>
-      {controls && <Controls style={{background:"red"}}/>}
+      {main && calling ?
+<CallWindow calling={setCall}/>: null  }    
+      {controls && <Controls  setCalling={(c:boolean)=>setCall(c)}/>}
         </div>
+ 
     </VidStyles>
   )
 })

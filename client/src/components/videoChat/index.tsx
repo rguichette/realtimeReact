@@ -16,6 +16,7 @@ export default function index() {
   
   
   
+  
   useEffect(()=>{
 
     
@@ -40,7 +41,7 @@ export default function index() {
   return (
  <Style>
     
-      <Video/>
+      <Video main={true}/>
       <motion.div className="motion_video"  style={{position:"absolute", top:0, border: "1px solid yellow",borderRadius: 20}}
       drag dragConstraints={{
         top: 0,

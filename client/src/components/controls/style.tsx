@@ -12,11 +12,18 @@ align-items: center;
 align-content: center;
 padding-top: 5px;
 padding-bottom: 5px;
+
+
+
 /* display: flex;
+
 
 flex-wrap: wrap;
 flex-direction: row;
 justify-content: center; */
+}
+#controls{
+    position:relative ;
 }
 
 .icon_container{
@@ -31,6 +38,7 @@ justify-content: center; */
     justify-content: center;
     margin-left: 1rem;
     margin-right: 1rem;
+   
     
 }
 
@@ -49,6 +57,29 @@ background-color: green;
 .in_call{
     background-color: red;
 }
+
+
+.copy{
+    background: powderblue;
+    position:absolute ;
+    left: 20px;
+    
+    span{
+        position:absolute ;
+        top: -35px;
+        left: 15px;
+        border: 1px solid white;
+        background: darkgray ;
+        border-radius:3px ;
+        width: 70px;
+        visibility: hidden;
+    }
+}
+
+.copy:hover span {
+    visibility: visible;
+}
+
 
 `
 
