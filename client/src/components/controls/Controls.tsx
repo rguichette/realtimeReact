@@ -10,6 +10,8 @@ import {AppDispatch, RootState} from '../../store'
 import { initVideoState, muteAudio, hide as hideVideo } from '../../videoSlice';
 import Styles from "./style"
 
+import { socket } from '../../socket';
+
 import CallWindow from '../callWindow'
 
 //TODO: find css style types
@@ -19,6 +21,7 @@ export default function index({style, setCalling}:{style?:any, setCalling:any}) 
   console.log(muted,hide, in_call);
 
   let [callId, setCallId] = useState('')
+  let [copyId, setCopyId] = useState(false)
 
 
   let makeCall = () =>{
@@ -32,8 +35,18 @@ export default function index({style, setCalling}:{style?:any, setCalling:any}) 
     <div className="controls_container" style={style}>
         <div className="copy">
 
-        <span id="toolTip">COPY ID</span>
-        <IoCopyOutline id="copy_icon"/>
+            {copyId ?  <span id="toolTip_copied">COPIED</span> : <span id="toolTip_id">COPY ID</span> }
+
+        {/* <span id="toolTip_id">COPY ID</span> */}
+         {/*   */}
+       
+       
+       
+        <IoCopyOutline id="copy_icon" onClick={()=>{
+            setCopyId(true)
+            navigator.clipboard.writeText(socket.id)
+            setTimeout(()=>{setCopyId(false)}, 2000)
+            }}/>
 
         </div>
 

@@ -72,12 +72,36 @@ background-color: green;
         background: darkgray ;
         border-radius:3px ;
         width: 70px;
-        visibility: hidden;
+        opacity: 0 ;
+    }
+
+    #toolTip_copied{
+        background: greenyellow;
+        
     }
 }
 
-.copy:hover span {
-    visibility: visible;
+.copy:hover #toolTip_id{
+    animation: inout 2s ;
+}
+ #toolTip_copied{
+    animation: inout 2s ;
+}
+
+@keyframes inout{
+0%{
+    opacity: 0 ;
+}
+50%{
+    opacity: 1
+}
+75%{
+    opacity: .25;
+}
+
+100%{
+    opacity:0 ;
+}
 }
 
 
