@@ -25,7 +25,10 @@ justify-content: center; */
 #controls{
     position:relative ;
 }
-
+#copy_icon:active{
+/* background: green; */
+color:green ;
+}
 .icon_container{
 
 
@@ -49,6 +52,8 @@ justify-content: center; */
     height: 20px;
      border-radius: 50%;
 }
+
+
 
 .start_call{
 background-color: green;

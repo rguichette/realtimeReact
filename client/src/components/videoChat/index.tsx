@@ -9,6 +9,7 @@ import { getMedia } from '../../helpers/callHelper';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 
+import { peerConnection } from '../../helpers/callHelper';
 
 export default function index() {
   let localRef = useRef() as MutableRefObject<HTMLVideoElement>;
@@ -22,19 +23,17 @@ export default function index() {
     
     // if audio/video false, then we are seeing and hearing 
     getMedia({audio: !muted, video:!hide}).then((stream)=>{
+      stream?.getTracks().forEach(track =>{
+        peerConnection.addTrack(track, stream)
+      })
 
       localRef.current.srcObject = stream
     })
-
+console.log('====================================');
+console.log(peerConnection);
+console.log('====================================');
   })
   
-  // getMedia().then(s =>{
-  //   // console.log("S", s);
-    
-    
-  //   // localRef.current.srcObject = s;
-
-  // })
 
 
 

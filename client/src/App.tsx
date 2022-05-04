@@ -6,16 +6,9 @@ import {getMedia} from './helpers/callHelper'
 
 import VideoChat from './components/videoChat'
 
-import {socket} from './socket'
+import {socket} from './utils/peer_connection'
 
 function App() {
-
-
-// console.log(stream);
-
-socket.on("connect", () => {
-  console.log(socket.id); // x8WIv7-mJelg7on_ALbx
-});
 
   return (
     <div className="App" style={{ height:"100%", width:"100%"}} >

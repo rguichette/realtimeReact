@@ -10,7 +10,7 @@ import {AppDispatch, RootState} from '../../store'
 import { initVideoState, muteAudio, hide as hideVideo } from '../../videoSlice';
 import Styles from "./style"
 
-import { socket } from '../../socket';
+import { socket } from '../../utils/peer_connection';
 
 import CallWindow from '../callWindow'
 
