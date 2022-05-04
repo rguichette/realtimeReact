@@ -33,11 +33,14 @@ export const videoSlice = createSlice({
         },
         hide: state =>{
             state.hide = !state.hide
+        },
+        setInCall: state =>{
+            state.in_call = !state.in_call
         }
 
      }
 })
 
 
-export const {pickup, hangup, muteAudio, hide} = videoSlice.actions;
+export const {pickup, hangup, muteAudio, hide, setInCall} = videoSlice.actions;
 export default videoSlice.reducer;

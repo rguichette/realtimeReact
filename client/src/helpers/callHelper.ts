@@ -1,6 +1,10 @@
 import { io } from "socket.io-client";
 import {socket} from "../utils/peer_connection"
 
+// import { setInCall } from "../videoSlice";
+
+import store from '../store'
+
 interface IConstraints {
  video?: boolean, 
  audio?: boolean
@@ -17,7 +21,7 @@ interface IcallMeta {
 
  
 
-export let getMedia= async (constraints:IConstraints ={video:true, audio:true})=>{
+export let getMedia= async (constraints:IConstraints ={video:true, audio: true})=>{
     let stream = null;
 
 

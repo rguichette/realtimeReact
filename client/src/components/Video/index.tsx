@@ -37,6 +37,7 @@ let Video = React.forwardRef<HTMLVideoElement, Ivideo>(({controls=true, main=fal
     const dispatch = useDispatch<AppDispatch>()
     
     let [calling, setCall] = useState(false)
+    let [startCall, setStartCall] = useState(false)
 
     // console.log("your ref is ", forwardedRef);
     
@@ -53,11 +54,11 @@ let Video = React.forwardRef<HTMLVideoElement, Ivideo>(({controls=true, main=fal
         </div>
         <div className='video_container'>
 
-      <video ref={forwardedRef} autoPlay muted controls={false} id="localVideo" onLoadedMetadata={(e)=>onloadMetaData(e)}>
+      <video ref={forwardedRef} controls={false} id="localVideo" onLoadedMetadata={(e)=>onloadMetaData(e)}>
           {/* <source  type="video/mp4" src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" /> */}
       </video>
       {main && calling ?
-<CallWindow calling={setCall}/>: null  }    
+<CallWindow setStartCall={setStartCall} calling={setCall}/>: null  }    
       {controls && <Controls  setCalling={(c:boolean)=>setCall(c)}/>}
         </div>
  

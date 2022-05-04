@@ -47,12 +47,21 @@ display:flex ;
                 height: 30px;
             }
         }
+
     }
 }
 .center_wrapper{
    /* display:flex ; */
 
 }
+
+#closed{
+    /* display: none ; */
+    background:yellow ;
+
+}
+
+
 
 `
 

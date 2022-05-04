@@ -13,8 +13,9 @@ import { peerConnection } from '../../helpers/callHelper';
 
 export default function index() {
   let localRef = useRef() as MutableRefObject<HTMLVideoElement>;
-  let {muted, hide} = useSelector((state:RootState)=>state.video)
+  let remoteVideo = useRef() as MutableRefObject<HTMLVideoElement>;
   
+  let {muted, hide} = useSelector((state:RootState)=>state.video)
   
   
   
@@ -22,16 +23,25 @@ export default function index() {
 
     
     // if audio/video false, then we are seeing and hearing 
-    getMedia({audio: !muted, video:!hide}).then((stream)=>{
+    getMedia({audio:!muted, video:!hide}).then((stream)=>{
       stream?.getTracks().forEach(track =>{
         peerConnection.addTrack(track, stream)
       })
 
       localRef.current.srcObject = stream
+      localRef.current.play()
     })
 console.log('====================================');
 console.log(peerConnection);
 console.log('====================================');
+
+peerConnection.ontrack = async (e)=>{
+  const [remoteStream] = e.streams;
+    remoteVideo.current.srcObject = remoteStream;
+     remoteVideo.current.play()
+}
+
+
   })
   
 
@@ -40,7 +50,7 @@ console.log('====================================');
   return (
  <Style>
     
-      <Video main={true}/>
+      <Video ref={remoteVideo} main={true}/>
       <motion.div className="motion_video"  style={{position:"absolute", top:0, border: "1px solid yellow",borderRadius: 20}}
       drag dragConstraints={{
         top: 0,
