@@ -54,7 +54,7 @@ let Video = React.forwardRef<HTMLVideoElement, Ivideo>(({controls=true, main=fal
         </div>
         <div className='video_container'>
 
-      <video ref={forwardedRef} controls={false} id="localVideo" onLoadedMetadata={(e)=>onloadMetaData(e)}>
+      <video ref={forwardedRef} autoPlay playsInline controls={false} id="localVideo" onLoadedMetadata={(e)=>onloadMetaData(e)}>
           {/* <source  type="video/mp4" src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" /> */}
       </video>
       {main && calling ?

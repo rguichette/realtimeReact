@@ -20,25 +20,35 @@ export default function index() {
   
   
   useEffect(()=>{
+  
+console.log("rerun");
 
     
     // if audio/video false, then we are seeing and hearing 
-    getMedia({audio:!muted, video:!hide}).then((stream)=>{
+    getMedia({audio:!muted, video:!hide}).then( async(stream)=>{
+     
+     
       stream?.getTracks().forEach(track =>{
         peerConnection.addTrack(track, stream)
       })
 
       localRef.current.srcObject = stream
-      localRef.current.play()
+      // localRef.current.play()
+      
+      // .catch(e=>console.log(e));
+
+
+
     })
-console.log('====================================');
-console.log(peerConnection);
-console.log('====================================');
 
 peerConnection.ontrack = async (e)=>{
   const [remoteStream] = e.streams;
     remoteVideo.current.srcObject = remoteStream;
-     remoteVideo.current.play()
+
+  // await remoteVideo.current.play()
+  
+  // .catch(e=>console.log(e));
+
 }
 
 
