@@ -21,20 +21,22 @@ interface IcallMeta {
 
  
 
-export let getMedia= async (constraints:IConstraints ={video:true, audio: true})=>{
+export let getMedia=  (constraints:IConstraints ={video:true, audio: true})=>{
     let stream = null;
 
 
   try {
-    stream = await navigator.mediaDevices.getUserMedia(constraints);
+    return navigator.mediaDevices.getUserMedia(constraints);
     /* use the stream */
   } catch(err) {
     /* handle the error */
   }
  
-return stream;
 
 }
+
+
+
 let callMeta:IcallMeta;
 
 export let makeCall = async(callId:string) =>{

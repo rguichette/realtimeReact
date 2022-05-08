@@ -1,6 +1,8 @@
 import * as express from "express";
 import { createServer } from "http";
+import * as path from 'path';
 import { Server } from "socket.io";
+
 
 const app = express();
 const httpServer = createServer(app);
@@ -8,8 +10,11 @@ const io = new Server(httpServer, { cors: {
     origin: '*',
   }});
 
+  // app.use(express.static("public"));
+  // app.use(express.static(path.join(__dirname, '../client', "dist")))
 
-
+  // console.log(path.join(__dirname, '../client', "dist"));
+  
 
 let port = 5000;
 

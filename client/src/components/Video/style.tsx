@@ -14,7 +14,6 @@ height: ${({style}) => style?.height ? style.height +"px" : style?.width as numb
 ${({style}) =>{
     if(style?.height)
     return style.height;
-        console.log("height: ", style?.width as number * .5625 )
         return style?.width as number * .5625 
         
         }}; */
