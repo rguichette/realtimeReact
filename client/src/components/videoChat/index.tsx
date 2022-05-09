@@ -30,9 +30,26 @@ export default function index() {
   }, [hide, muted]);
 
   useEffect(() => {
-    if (mediaStream) mediaStream.getVideoTracks()[0].enabled = !hide;
     //handle hiding
+    if (mediaStream) {
+      //by default hide and mute are false. "is the cam/mic on"
+      mediaStream.getVideoTracks()[0].enabled = !hide;
+
+      if (mediaStream.getTracks()[1])
+        mediaStream.getAudioTracks()[0].enabled = !muted;
+    }
+
     mediaStream?.getVideoTracks().forEach((track) => {
+      if (peerConnection.getSenders().length) {
+        peerConnection.getSenders()[0].replaceTrack(track);
+      } else {
+        peerConnection.addTrack(track, mediaStream);
+      }
+    });
+
+    //handling mute
+
+    mediaStream?.getAudioTracks().forEach((track) => {
       if (peerConnection.getSenders().length) {
         peerConnection.getSenders()[0].replaceTrack(track);
       } else {
