@@ -24,13 +24,12 @@ io.on("connection", (socket) => {
     //listen to offer and send call details (offer) to recipient
     socket.on('offer', (data)=>{
       // console.log(data);
-      socket.to(data.callMeta.callee).emit("offer",{offer: data.offer, caller: data.callMeta.caller} )
+      socket.to(data.callMeta.callee).timeout(25000).emit("offer",{offer: data.offer, caller: data.callMeta.caller} )
       
     })
 
     socket.on('answer', (data)=>{
       socket.to(data.caller).emit("answer", {answer:data.answer})
-    // console.log(data);
 
     })
 

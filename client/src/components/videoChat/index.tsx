@@ -4,7 +4,7 @@ import Video from "../Video";
 import Style from "./style";
 
 import { motion } from "framer-motion";
-import { getMedia } from "../../helpers/callHelper";
+import { getMedia, toggleHide, toggleMute } from "../../helpers/callHelper";
 
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
@@ -19,48 +19,27 @@ export default function index() {
   const [mediaStream, setMediaStream] = useState<MediaStream | null>(null);
 
   useEffect(() => {
-    // peerConnection.getSenders()[0].replaceTrack(track)
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: false })
       .then((stream) => {
         setMediaStream(stream);
       });
 
-    //needed to trigger re-render so we get get the new stream;
+    //needed to trigger re-render so we can get the new stream;
   }, [hide, muted]);
 
   useEffect(() => {
-    //handle hiding
     if (mediaStream) {
-      //by default hide and mute are false. "is the cam/mic on"
-      mediaStream.getVideoTracks()[0].enabled = !hide;
-
-      if (mediaStream.getTracks()[1])
-        mediaStream.getAudioTracks()[0].enabled = !muted;
+      //handle hiding
+      toggleHide(mediaStream, hide);
+      //handling mute
+      toggleMute(mediaStream, muted);
     }
-
-    mediaStream?.getVideoTracks().forEach((track) => {
-      if (peerConnection.getSenders().length) {
-        peerConnection.getSenders()[0].replaceTrack(track);
-      } else {
-        peerConnection.addTrack(track, mediaStream);
-      }
-    });
-
-    //handling mute
-
-    mediaStream?.getAudioTracks().forEach((track) => {
-      if (peerConnection.getSenders().length) {
-        peerConnection.getSenders()[0].replaceTrack(track);
-      } else {
-        peerConnection.addTrack(track, mediaStream);
-      }
-    });
 
     localRef.current.srcObject = mediaStream;
     peerConnection.ontrack = (e) => {
       let [remoteStream] = e.streams;
-      remoteVideoRef.current.srcObject = remoteStream;
+      if (remoteVideoRef) remoteVideoRef.current.srcObject = remoteStream;
     };
   });
 
