@@ -1,11 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { connect } from 'react-redux'
 
 export interface initVideoState {
     call_duration: number,
     in_call: boolean,
     muted:boolean,
     hide: boolean,
-    incoming: boolean
+    is_incoming: boolean,
+    call_window: boolean,
+    connected:boolean
 
 }
 
@@ -15,7 +18,9 @@ let initialState:initVideoState ={
     // call_requested: false,
     muted: false,
     hide: false,
-    incoming: false
+    is_incoming: false,
+    call_window: false,
+    connected:false
     
 
  }
@@ -24,16 +29,20 @@ export const videoSlice = createSlice({
     name: 'video',
     initialState,
      reducers:{
-        
+  
+        open_call_window: (state, action: PayloadAction<boolean>) =>{
+            state.call_window = action.payload
+        },
+
         incoming: state =>{
-            state.incoming = true
+            state.is_incoming = true
         },
         pickup: state =>{
-            state.incoming = false;
+            state.is_incoming = false;
             state.in_call = true
         },
         hangup: state =>{
-            state.incoming = false;
+            state.is_incoming = false;
             state.in_call = false
         },
         muteAudio: state =>{
@@ -51,5 +60,5 @@ export const videoSlice = createSlice({
 })
 
 
-export const {pickup, hangup, muteAudio, hide, setInCall, incoming} = videoSlice.actions;
+export const {pickup, hangup, muteAudio, hide, setInCall, incoming, open_call_window} = videoSlice.actions;
 export default videoSlice.reducer;

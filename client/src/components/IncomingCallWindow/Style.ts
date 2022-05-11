@@ -3,13 +3,14 @@ import styled from "styled-components";
 
 let IncomingStyle = styled.div`
 background-color: green ;
-position:fixed ;
+position:absolute ;
 top:0;
-width:10% ;
-height: 10%;
+width:100% ;
+height: 100%;
 display:flex ;
 justify-content:center ;
 align-items: center ;
+z-index:1 ;
 
 .items_container{
     background: orange ;

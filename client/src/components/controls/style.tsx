@@ -1,115 +1,54 @@
 import styled from "styled-components";
 
-const controlsStyle = styled.div `
+let Style = styled.div`
+  /* background: purple; */
+  width: 100%;
+  /* height: 100%; */
+  position: absolute;
 
-.controls_container{
-background-color: cadetblue;
-display: flex;
-flex-direction: row;
-width: 100%;
-justify-content: center;
-align-items: center;
-align-content: center;
-padding-top: 5px;
-padding-bottom: 5px;
-
-
-
-/* display: flex;
-
-
-flex-wrap: wrap;
-flex-direction: row;
-justify-content: center; */
-}
-#controls{
-    position:relative ;
-}
-#copy_icon:active{
-/* background: green; */
-color:green ;
-}
-.icon_container{
-
-
-   
-    /* background-color:yellow; */
-    /* display: inline-block; */
+  .container {
     display: flex;
-    align-content: center;
-    /* align-items: center; */
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* positiopn: absolute; */
+  }
+  section {
+    background: yellow;
+    display: block;
+    width: 100%;
+    border: 1px solid black;
+    flex: 1;
+  }
+  #controls {
+    background: hotpink;
+    flex: 5;
     justify-content: center;
-    margin-left: 1rem;
-    margin-right: 1rem;
-   
-    
-}
-
-.icon{
-    /* font-size: 20px; */
-    padding: 8px;
-    width: 20px;
-    height: 20px;
-     border-radius: 50%;
-}
-
-
-
-.start_call{
-background-color: green;
-
-}
-.in_call{
-    background-color: red;
-}
-
-
-.copy{
-    background: powderblue;
-    position:absolute ;
-    left: 20px;
-    
-    span{
-        position:absolute ;
-        top: -35px;
-        left: 15px;
-        border: 1px solid white;
-        background: darkgray ;
-        border-radius:3px ;
-        width: 70px;
-        opacity: 0 ;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    .icons {
+      justify-content: space-around;
+      align-items: center;
+      text-align: center;
+      display: flex;
+      width: 240px;
     }
+  }
 
-    #toolTip_copied{
-        background: greenyellow;
-        
-    }
-}
+  .screens {
+    display: flex;
+    flex-direction: row;
+  }
 
-.copy:hover #toolTip_id{
-    animation: inout 2s ;
-}
- #toolTip_copied{
-    animation: inout 2s ;
-}
+  #copy_icon {
+    background: red;
+    margin-left: 5px;
+    height: 100%;
+    width: 25px;
+  }
+`;
 
-@keyframes inout{
-0%{
-    opacity: 0 ;
-}
-50%{
-    opacity: 1
-}
-75%{
-    opacity: .25;
-}
-
-100%{
-    opacity:0 ;
-}
-}
-
-
-`
-
-export default controlsStyle
+export default Style;

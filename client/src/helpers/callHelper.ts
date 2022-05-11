@@ -4,7 +4,7 @@ import {socket} from "../utils/peer_connection"
 // import { setInCall } from "../videoSlice";
 
 import store from '../store'
-import { pickup } from "../videoSlice";
+import { pickup, setInCall } from "../videoSlice";
 
 interface IConstraints {
  video?: boolean, 
@@ -42,6 +42,8 @@ let callMeta:IcallMeta;
 let answer:any;
 
 export let makeCall = async(callId:string) =>{
+  //TODO: CHECK IF CALLID ID EMPTY OR IF IT MATCH THE {local} SOCKET ID
+
   callMeta ={
     caller: socket.id,
     callee: callId
@@ -50,7 +52,8 @@ export let makeCall = async(callId:string) =>{
   const offer = await peerConnection.createOffer();
   await peerConnection.setLocalDescription(offer);
 
-  
+  //if user makes call --> hang up should be an option before other side picks up or during call 
+  store.dispatch(setInCall())
 
 socket.emit("test")
 socket.emit("offer",{offer:offer,callMeta:callMeta})
@@ -192,7 +195,7 @@ socket.on('candidate', async(data)=>{
 // peerConnection.addEventListener('connectionstatechange', event => {
 //   if (peerConnection.connectionState === 'connected') {
 //   console.log('CONNECTED');
-//     // store.dispatch()
+//     store.dispatch()
   
 //   }
 // });

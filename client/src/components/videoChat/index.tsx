@@ -6,10 +6,12 @@ import Style from "./style";
 import { motion } from "framer-motion";
 import { getMedia, toggleHide, toggleMute } from "../../helpers/callHelper";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 
 import { peerConnection } from "../../helpers/callHelper";
+import { initVideoState } from "../../videoSlice";
+import CallWindow from "../callWindow";
 
 export default function index() {
   let localRef = useRef() as MutableRefObject<HTMLVideoElement>;
@@ -17,6 +19,12 @@ export default function index() {
   let { muted, hide } = useSelector((state: RootState) => state.video);
 
   const [mediaStream, setMediaStream] = useState<MediaStream | null>(null);
+
+  let dispatch = useDispatch();
+
+  let { in_call, call_window } = useSelector<RootState>(
+    (state) => state.video
+  ) as initVideoState;
 
   useEffect(() => {
     navigator.mediaDevices
@@ -70,7 +78,11 @@ export default function index() {
         />
       </motion.div>
 
-      {/* {console.log("localRef",localRef)} */}
+      {call_window && (
+        <div className="call_window">
+          <CallWindow />
+        </div>
+      )}
     </Style>
   );
 }
